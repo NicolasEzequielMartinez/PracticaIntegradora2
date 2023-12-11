@@ -1,0 +1,42 @@
+<div class="SessionContainer">
+    <h1>MECATRON</h1>
+    <h2>Formulario de datos requeridos</h2>
+    <br/>
+    <p>
+        Antes de darte acceso a la plataforma, requerimos que completes algunos datos adicionales.
+    </p>
+    <br/>
+    <p> 
+        Por favor, completa los siguientes datos requeridos para iniciar sesión.
+    </p>
+    <br/>
+    <form id="extraForm" class="styleFormSession">
+        <div
+            style="display: flex; flex-direction: row; gap: 0.5em; width: 100%; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="position: absolute; margin-left: -16em;">signature</span>
+            <input type="text" name="last_name" placeholder="Apellido" required>
+        </div>
+        <br />
+        <div
+            style="display: flex; flex-direction: row; gap: 0.5em; width: 100%; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="position: absolute; margin-left: -16em;">alternate_email</span>
+            <input type="email" name="email" placeholder="Correo" required>
+        </div>
+        <br />
+        <div
+            style="display: flex; flex-direction: row; gap: 0.5em; width: 100%; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="position: absolute; margin-left: -16em;">demography</span>
+            <input type="number" name="age" placeholder="Edad" required>
+        </div>
+        <br />
+        <div
+            style="display: flex; flex-direction: row; gap: 0.5em; width: 100%; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="position: absolute; margin-left: -16em;">password</span>
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <br />
+        <input class="boton" type="submit">
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/extraForm.js"></script>

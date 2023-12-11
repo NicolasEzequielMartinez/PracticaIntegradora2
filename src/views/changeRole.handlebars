@@ -1,0 +1,83 @@
+<div id="VistaDeCarga" style="display: block" ;>
+    <div class="loader-container">
+        <div id="conteProfi">
+            <div class="item">
+            <h1>MECATRON</h1>
+            <div style="width: 100%; display: flex; justify-content: center; flex-direction: row; align-items: center; margin: 0em 2em;">
+                <a href="/chat"><img src="https://i.ibb.co/ftwkrSb/png-transparent-email-computer-icons-message-icon-design-bass-miscellaneous-angle-black-1-1.png"  alt="login" border="0" class="logoS"></a>
+                <a href="/products" style="margin-left: 2em"><img src="https://i.ibb.co/pKgL6pC/bench.png" alt="realtimeproducts" border="0" class="logoS"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorVista" style=" display: none">
+    <div class="SessionContainer">
+        <div id="conteProfi" style="height: auto;">
+            <h1 style="margin-top: 0 !important">Premium</h1>
+            <br />
+            <p style="margin: 0em 2em">Completa los campos con tu documentación y haz clic en "Cargar Documentos". Completada toda la información requerida, se habilitará un botón de "Actualizar Rol". Al hacer clic en este botón, podrás disfrutar de todos los beneficios exclusivos que ofrece ser un usuario premium en nuestra plataforma.</p>
+            <br />
+            <form id="uploadDocuments" enctype="multipart/form-data">
+                <div class="inputRole" style="border: 0.1em solid rgb(188 188 188 / 78%); padding: 0.5em 1em; border-radius: 1em; display: flex; justify-content: center; flex-direction: row; align-items: center; ">
+                    <p style="margin-top: 0em !important">Identificación:</p>
+                    <div style="display: flex; justify-content: center; gap: 1em; flex-direction: column; align-items: center; ">
+                        <input type="file" id="identification" name="identification" style="display: none;">
+                        <label for="identification"
+                            style="padding: 10px; font-family: 'Montserrat'; background-color: #bfe4fd; color: #002877; cursor: pointer; border-radius: 1em; border: none;">
+                            <span id="nombreArchivo1">Agrega tu documentación</span>
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="inputRole" style="border: 0.1em solid rgb(188 188 188 / 78%); padding: 0.5em 1em; border-radius: 1em; display: flex; justify-content: center; flex-direction: row; align-items: center; ">
+                    <p style="margin-top: 0em !important">Comprobante de domicilio:</p>
+                    <div style="display: flex; justify-content: center; gap: 1em; flex-direction: column; align-items: center;">
+                        <input type="file" id="proofOfAddress" name="proofOfAddress" style="display: none;">
+                        <label for="proofOfAddress"
+                            style="padding: 10px; font-family: 'Montserrat'; background-color: #bfe4fd; color: #002877; cursor: pointer; border-radius: 1em; border: none;">
+                            <span id="nombreArchivo2">Agrega tu documentación</span>
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="inputRole" style="border: 0.1em solid rgb(188 188 188 / 78%); padding: 0.5em 1em; border-radius: 1em; display: flex; justify-content: center; flex-direction: row; align-items: center; ">
+                    <p style="margin-top: 0em !important">Comprobante de estado de cuenta:</p>
+                    <div style="display: flex; justify-content: center; gap: 1em; flex-direction: column; align-items: center;">
+                        <input type="file" id="bankStatement" name="bankStatement" style="display: none;">
+                        <label for="bankStatement"
+                            style="padding: 10px; font-family: 'Montserrat'; background-color: #bfe4fd; color: #002877; cursor: pointer; border-radius: 1em; border: none;">
+                            <span id="nombreArchivo3">Agrega tu documentación</span>
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="inputRole" id="inputRole">
+                    <input id="cargarDocs" class="boton" type="submit" value="Cargar Documentos">
+                    <button id="ChangeROLE" class="boton">Actualizar Role</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    const archivoInputIdent = document.getElementById('identification');
+    const archivoInputDomi = document.getElementById('proofOfAddress');
+    const archivoInputBank = document.getElementById('bankStatement');
+    const nombreArchivo1 = document.getElementById('nombreArchivo1');
+    const nombreArchivo2 = document.getElementById('nombreArchivo2');
+    const nombreArchivo3 = document.getElementById('nombreArchivo3');
+    archivoInputIdent.addEventListener('change', () => {
+        const archivos = archivoInputIdent.files;
+        nombreArchivo1.textContent = archivos[0].name;
+    })
+    archivoInputDomi.addEventListener('change', () => {
+        const archivos = archivoInputDomi.files;
+        nombreArchivo2.textContent = archivos[0].name;
+    })
+    archivoInputBank.addEventListener('change', () => {
+        const archivos = archivoInputBank.files;
+        nombreArchivo3.textContent = archivos[0].name;
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/changeRole.js"></script>

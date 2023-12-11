@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="logo">
+        <h1>MECATRON</h1>
+        <div>
+            <a href="/login"><img src="https://i.ibb.co/Kxb8GDb/login.png" alt="login" border="0" class="logoS"></a>
+            <a href="/products" style="margin-left: 2em"><img src="https://i.ibb.co/pKgL6pC/bench.png" alt="realtimeproducts" border="0" class="logoS"></a>
+            <a href="/cart" style="margin-left: 2em"><img src="https://i.ibb.co/8DFrsw8/cart1.png" alt="cart" border="0" class="logoS"></a>
+        </div>
+    </div>
+    </br>
+    <h2>Chat de usuarios</h2>
+        <p style="margin: 1em 2em 0em 2em;">Comparte tus opiniones y experiencias sobre productos que hayas comprado recientemente.</p>
+    <br>
+        <p style="margin-top: 0"> ¡Únete a la conversación y comparte tus experiencias con la comunidad!</p>
+    </br>
+    <table id="chat-table" class="table"></table>
+    <table class="table" id="sendMsg">
+        <tbody>
+            <tr>
+                <td><input type="text" id="message" placeholder="Mensaje" /></td>
+                <td id="tdBtnSendMsg"><button type="submit" class="botonEnv" id="btnEnv">Enviar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js" type="module"></script>

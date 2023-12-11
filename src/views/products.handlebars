@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="logoSession">
+        <h1>MECATRON REPUESTOS</h1>
+        <div style="display: flex;">
+            <a href="/perfil"><img src="https://i.ibb.co/Kxb8GDb/login.png" alt="login" border="0" class="logoS"></a>
+            <a href="/chat"><img src="https://i.ibb.co/ftwkrSb/png-transparent-email-computer-icons-message-icon-design-bass-miscellaneous-angle-black-1-1.png"  alt="login" border="0" class="logoS"></a>
+            <a href="/changeRole"><img src="https://i.ibb.co/f8TCwG1/VIP-modified.png" alt="VIP-modified" border="0"class="logoS"></a>
+            <div id="storeButtonPrem">
+            </div>
+            <a href="/cart"><img src="https://i.ibb.co/8DFrsw8/cart1.png" alt="cart" border="0" class="logoS"></a>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 0.6em; margin-bottom: 1em;">
+            <div style="display: flex; flex-direction: row; justify-content: center; gap: 0.5em; padding: 0.3em;">
+                <button id="All" class="botonB">Todas las categorías</button>
+                <button id="Motor" class="botonB">Motor</button>
+                <button id="Electricidad" class="botonB">Electricidad</button>
+                <button id="Limpieza" class="botonB">Limpieza</button>
+                <button id="Frenos" class="botonB">Frenos</button>
+                <button id="Carroceria" class="botonB">Carroceria</button>
+                <button id="Suspension" class="botonB">Suspension</button>
+                <button id="MenorPre" class="botonB">Menor precio</button>
+                <button id="MayorPre" class="botonB">Mayor precio</button>
+                <input type="number" id="limit" class="botonB" style="display: flex; justify-content: center; align-items: center; height: 3em;  margin: 0em 0em; width: 6.5em;" placeholder="Mostrar"/>
+                <button id="Limpiar" class="botonB">Limpiar filtros</button>
+            </div>
+    </div>
+    <h2>Catálogo de productos</h2>
+    <table id="tableProd" class="table">
+    </table>
+    <div id="Pags"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js" type="module"></script>

@@ -1,0 +1,469 @@
+paths:
+
+  '/api/products':
+
+  # CREAR UN PRODUCTO: 
+    post:
+      summary: 'Crear un producto'
+      tags:
+        - 'Products'
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: 'object'
+              required:
+                - 'title'
+                - 'description'
+                - 'code'
+                - 'price'
+                - 'stock'
+                - 'category'
+                - 'thumbnails'
+              properties:
+                title:
+                  type: 'string'
+                  description: 'Nombre del producto'
+                description:
+                  type: 'string'
+                  description: 'Especificaciones técnicas del producto'
+                code:
+                  type: 'string'
+                  description: 'Código del producto'
+                price:
+                  type: 'number'
+                  description: 'Valor del producto'
+                stock:
+                  type: 'number'
+                  description: 'Stock disponible'
+                category:
+                  type: 'string'
+                  description: 'Categoría a la que pertenece el producto'
+                thumbnails:
+                  type: 'array'
+                  description: 'Lista de enlaces a las imágenes del producto'
+                  items:
+                    type: 'string'
+                    format: 'uri'
+            example:
+              title: 'Antena 40cm Generica'
+              description: 'Todos'
+              code: 'AM-011'
+              price: 1599
+              stock: 10
+              category: 'Electricidad'
+              thumbnails: 
+                - https://http2.mlstatic.com/D_NQ_NP_883881-MLA48317442661_112021-O.webp
+      responses:
+        '200':
+          description: 'SUCCESS - Producto creado exitosamente:'
+          content: 
+            application/json:
+              example:
+                statusCode: 200
+                message: 'Producto creado exitosamente.'
+                result: 
+                  title: 'Antena 40cm Generica'
+                  description: 'Todos'
+                  code: 'AM-011'
+                  price: 1599
+                  stock: 10
+                  category: 'Electricidad'
+                  thumbnails: 
+                    - https://http2.mlstatic.com/D_NQ_NP_883881-MLA48317442661_112021-O.webp
+                  owner: admin
+                  _id: '6507dfccc22dba0cffba0a68'
+                  __v: 0
+        '400':
+          description: 'ERROR: BAD REQUEST - Custom error:'
+          content: 
+            application/json:
+              example:
+                status: 'error' 
+                error: 'Error al crear el nuevo producto.'
+                cause: 'Una o más propiedades en los datos del producto están faltando o no son válidas.\n        Propiedades requeridas:\n        * title: Debe ser un string, se recibió Motorola - G32.\n        * description: Debe ser un string, se recibió (EL MODELO G32 DE MOTOROLA, COMBINA LA POTENCIA DE UN PROCESADOR SNAPDRAGON 680 CON 4GB DE RAM Y 128GB DE ALMACENAMIENTO INTERNO. CUENTA CON UNA PANTALLA DE 6,53” A UNA RESOLUCIÓN DE 1080X2400. Y POSEE UNA CÁMARA TRASERA PRINCIPAL DE 50MP, JUNTO CON UNA CÁMARA FRONTAL DE 8MP.).\n        * code: Debe ser un string, se recibió MotoG32.\n        * price: Debe ser un número positivo mayor que 0, se recibió 1000.\n        * stock: Debe ser un número positivo mayor que 0, se recibió 5.\n        * category: Debe ser un string, se recibió undefined.\n        * thumbnails: Debe ser un arreglo no vacío de URLs de imágenes, se recibió https://i.ibb.co/RY9T5v0/Moto-G32-P1.png,https://i.ibb.co/8XBn4pV/Moto-G32-P2.png.'
+                message: 'La información para crear el producto está incompleta o no es válida.'
+                code: 9
+        '401':
+          description: 'ERROR: UNAUTHORIZED - No se cumplen los permisos requeridos para acceder a la ruta:'
+          content:
+            application/json:
+              example:
+                error: 'No tienes acceso a esta ruta.'
+        '500':
+          description: 'ERROR: INTERNAL SERVER ERROR - Error al crear el producto - Controller || Service || DAO: + error.message
+              (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar crear el nuevo producto):'
+          content:
+            application/json:
+              example:
+                statusCode: 500
+                message: 'Error al crear el producto - Controller: resultService is not defined'
+
+  # TRAER TODOS LOS PRODUCTOS:
+    get:
+      summary: 'Traer todos/filtrados los productos'
+      tags:
+        - 'Products'
+      parameters:
+        - in: 'query'
+          name: 'limit'
+          schema:
+            type: 'number'
+          description: 'Cantidad máxima de resultados a devolver (Opcional):'
+        - in: 'query'
+          name: 'page'
+          schema:
+            type: 'number'
+          description: 'Número de página a mostrar (Opcional):'
+        - in: 'query'
+          name: 'sort'
+          schema:
+            type: 'number'
+          description: 'Orden por price, -1 para ascendente y 0 para descendente (Opcional):'
+        - in: 'query'
+          name: 'filtro'
+          schema:
+            type: 'string'
+          description: 'Filtro a aplicar, price o category (Opcional):'
+        - in: 'query'
+          name: 'filtroVal'
+          schema:
+            type: 'string'
+          description: 'Valor del filtro, price recibe un number, category recibe Laptop, Celular o Monitor (Opcional):'
+      responses:
+        '200':
+          description: 'SUCCESS - Productos obtenidos exitosamente:'
+          content:
+            application/json:
+              example:
+                statusCode: 200
+                message: 'Productos obtenidos exitosamente.'
+                result:
+                  docs:
+                    - _id: '64bd403b8078ce452ea3b7cb'
+                      title: 'Shampoo Meguiars'
+                      description: 'Todos'
+                      code: 'AM-005'
+                      price: 5300
+                      stock: 20
+                      category: 'Limpieza'
+                      thumbnails: 
+                        - 'https://store.upsangel.com/wp-content/uploads/2019/05/81JJmRj19yL._SX425_1.jpg'
+                      __v: 0
+                    - _id: '64bd402a8078ce452ea3b7c5'
+                      title: 'Bujía Bosch'
+                      description: 'Peugeot y Citroen'
+                      code: 'BA-002'
+                      price: 970
+                      stock: 60
+                      category: 'Motor'
+                      thumbnails: 
+                        - 'https://http2.mlstatic.com/D_NQ_NP_884061-MLA31909890241_082019-O.webp'
+                      __v: 0
+                  totalDocs: 78
+                  limit: 2
+                  totalPages: 39
+                  page: 1
+                  pagingCounter: 1
+                  hasPrevPage: false
+                  hasNextPage: true
+                  prevPage: null
+                  nextPage: 2
+                hasNextPage: true
+        '404':
+          description: 'ERROR: NOT FOUND - Productos no encontrados:'
+          content: 
+            application/json:
+              example:
+                statusCode: 404
+                message: '`No se encontraron productos. El resultado fue de 0 productos.'
+        '500':
+          description: 'ERROR: INTERNAL SERVER ERROR - Error al obtener los productos - Controller || Service || DAO: + error.message
+              (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar obtener los productos):'
+          content:
+            application/json:
+              example:
+                statusCode: 500
+                message: 'Error al obtener los productos - Controller: resultService is not defined'
+
+  '/api/products/{pid}':
+
+    # TRAER UN PRODUCTO POR SU ID: 
+    get:
+      summary: 'Obtener un producto por ID'
+      tags: 
+        - 'Products'
+      parameters:
+      - name: 'pid'
+        in: 'path'
+        required: true
+        description: 'ID del producto que se desea obtener:'
+        schema:
+          type: 'string'
+      responses:
+        '200':
+          description: 'SUCCESS - Producto obtenido exitosamente:'
+          content: 
+            application/json:
+              example:
+                statusCode: 200
+                message: 'Producto obtenido exitosamente.'
+                result: 
+                  _id: '6507dfccc22dba0cffba0a68'
+                  title: 'Antena 40cm Generica'
+                  description: 'Todos'
+                  code: 'AM-011'
+                  price: 1599
+                  stock: 10
+                  category: 'Electricidad'
+                  thumbnails: 
+                    - https://http2.mlstatic.com/D_NQ_NP_883881-MLA48317442661_112021-O.webp
+                  owner: admin
+                  __v: 0
+        '400':
+          description: 'ERROR: BAD REQUEST - Custom error:'
+          content: 
+            application/json:
+              example:
+                status: 'error' 
+                error: 'Error al obtener el producto por ID.'
+                cause: 'La propiedad de ID del producto no tiene un formato válido, se recibió 6490ab6c8190cc908.'
+                message: 'El ID de producto proporcionado no es válido.'
+                code: 10
+        '404':
+          description: 'ERROR: NOT FOUND - Producto no encontrado:'
+          content: 
+            application/json:
+              example:
+                statusCode: 404
+                message: 'No se encontró ningún producto con el ID 65075ed402344d671d2172a5.'
+        '500':
+          description: 'ERROR: INTERNAL SERVER ERROR - Error al obtener el producto por ID - Controller || Service || DAO: + error.message
+              (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar obtener el producto):'
+          content:
+            application/json:
+              example:
+                statusCode: 500
+                message: 'Error al obtener el producto por ID - Controller: resultService is not defined'
+
+    # ELIMINAR UN PRODUCTO POR SU ID: 
+    delete:
+      summary: 'Eliminar un producto por ID'
+      tags: 
+        - 'Products'
+      security:
+        - cookieAuth: []
+      parameters:
+      - name: 'pid'
+        in: 'path'
+        required: true
+        description: 'ID del producto que se desea eliminar:'
+        schema:
+          type: 'string'
+      responses:
+        '200':
+          description: 'SUCCESS - Producto eliminado exitosamente:'
+          content: 
+            application/json:
+              example:
+                statusCode: 200
+                message: 'Producto eliminado exitosamente.'
+        '400':
+          description: 'ERROR: BAD REQUEST - Custom error:'
+          content: 
+            application/json:
+              example:
+                status: 'error' 
+                error: 'Error al eliminar el producto por ID.'
+                cause: 'La propiedad de ID del producto no tiene un formato válido, se recibió 6490ab6c8190cc908.'
+                message: 'El ID de producto proporcionado no es válido.'
+                code: 10
+        '401':
+          description: >
+            - 'ERROR: UNAUTHORIZED - CASO 1: No se cumplen los permisos requeridos para acceder a la ruta.'
+
+            - 'ERROR: UNAUTHORIZED - CASO 2: Si el usuario premium intenta eliminar un producto que no le pertenece, se le deniega la acción.'
+          content: 
+            application/json:
+              examples:
+                example1:
+                  summary: 'CASO 1'
+                  value:
+                    error: 'No tienes acceso a esta ruta.'
+                example2:
+                  summary: 'CASO 2'
+                  value:
+                    statusCode: 401
+                    message: 'Solo puedes eliminar los productos que te pertenecen.'
+        '404':
+          description: 'ERROR: NOT FOUND - Producto no encontrado:'
+          content: 
+            application/json:
+              example:
+                statusCode: 404
+                message: 'No se encontró ningún producto con el ID 65075ed402344d671d2172a5.'
+        '500':
+          description: > 
+            - 'ERROR: INTERNAL SERVER ERROR - CASO 1: Error al obtener el producto por ID - DAO: + error.message
+              (Esto indica que ha ocurrido un error en la respectiva capa del módulo products al intentar obtener el producto).'
+            - 'ERROR: INTERNAL SERVER ERROR - CASO 2: Error al eliminar el producto - Controller || Service || DAO: + error.message (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar eliminar el producto).'
+          content:
+            application/json:
+              examples:
+                  example1:
+                    summary: 'CASO 1'
+                    value:
+                      statusCode: 500
+                      message: 'Error al obtener el producto por ID - DAO: result is not defined'
+                  example2:
+                    summary: 'CASO 2'
+                    value:
+                      statusCode: 500
+                      message: 'Error al eliminar el producto - Controller: resultService is not defined'
+
+    # ACTUALIZAR UN PRODUCTO POR SU ID: 
+    put:
+      summary: 'Actualizar un producto por ID'
+      tags: 
+        - 'Products'
+      security:
+        - cookieAuth: []
+      parameters:
+      - name: 'pid'
+        in: 'path'
+        required: true
+        description: 'ID del producto que se desea actualizar:'
+        schema:
+          type: 'string'
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: 'object'
+                properties:
+                  title:
+                    type: 'string'
+                    description: 'Nuevo título del producto (Ocional).'
+                  description:
+                    type: 'string'
+                    description: 'Nueva descripción del producto (Opcional).'
+                  code:
+                    type: 'string'
+                    description: 'Nuevo código del producto (Opcional).'
+                  price:
+                    type: 'number'
+                    description: 'Nuevo precio del producto (Opcional).'
+                  stock:
+                    type: 'number'
+                    description: 'Nuevo stock del producto (Opcional).'
+                  category:
+                    type: 'string'
+                    description: 'Nueva categoría del producto (Opcional).'
+                  thumbnails:
+                    type: 'array'
+                    description: 'Nuevas imágenes del producto (Opcional).'
+                    items:
+                      type: 'string'
+                      format: 'uri'
+              example:
+                title: 'prueba'
+                description: 'prueba de repuesto para vehículos'
+                code: 'PF-005'
+                price: 99999.99
+                stock: 99
+                category: 'Repuestos'
+                thumbnails: 
+                  - 'https://www.uba.ar/internacionales/archivos/TEST.jpg'
+      responses:
+        '200':
+          description: 'SUCCESS - Producto actualizado exitosamente:'
+          content: 
+            application/json:
+              example:
+                statusCode: 200
+                message: 'Producto actualizado exitosamente.'
+        '400':
+          description: >
+            - 'ERROR: BAD REQUEST - Custom error CASO 1: El ID de producto no es válido.'
+            
+            - 'ERROR: BAD REQUEST - Custom error CASO 2: No se proporcionaron los datos para la actualización del producto.'
+          content:
+            application/json:
+              examples:
+                  example1:
+                    summary: 'CASO 1'
+                    value:
+                      status: 'error'
+                      error: 'Error al intentar actualizar el producto.'
+                      cause: 'La propiedad de ID del producto no tiene un formato válido, se recibió jn.'
+                      message: 'El ID de producto proporcionado no es válido'
+                      code: 10 
+                  example2:
+                    summary: 'CASO 2'
+                    value:
+                      status: 'error'
+                      error: 'Error al intentar actualizar el producto.'
+                      cause: 'La información del producto es incompleta o incorrecta, se recibió: {}.'
+                      message: 'No se proporcionaron campos válidos para la actualización del producto.'
+                      code: 11
+        '401':
+          description: >
+            - 'ERROR: UNAUTHORIZED - CASO 1: No se cumplen los permisos requeridos para acceder a la ruta.'
+
+            - 'ERROR: UNAUTHORIZED - CASO 2: Si el usuario premium intenta actualizar un producto que no le pertenece, se le deniega la acción.'
+          content: 
+            application/json:
+              examples:
+                  example1:
+                    summary: 'CASO 1'
+                    value:
+                      error: 'No tienes acceso a esta ruta.'
+                  example2:
+                    summary: 'CASO 2'
+                    value:
+                      statusCode: 401
+                      message: 'Solo puedes modificar los productos que te pertenecen.'
+        '404':
+          description: 'ERROR: NOT FOUND - Producto no encontrado'
+          content: 
+            application/json:
+              example:
+                statusCode: 404
+                message: 'No se encontró ningún producto con el ID 65075ed402344d671d2172a5.'
+        '409':
+          description: 'ERROR: CONFLICT - La información con la que se desea actualizar el producto es igual a sus datos actuales:'
+          content: 
+            application/json:
+              example:
+                statusCode: 409
+                message: 'La actualización es igual a la versión actual de los datos del producto.'
+        '500':
+          description: > 
+            - 'ERROR: INTERNAL SERVER ERROR - CASO 1: Error al obtener el producto por ID - DAO: + error.message
+              (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar obtener el producto).'
+            - 'ERROR: INTERNAL SERVER ERROR - CASO 2: Error al actualizar el producto - Controller || Service || DAO: + error.message (Esto indica que ha ocurrido un error en la respectiva capa del módulo products, al intentar actualizar el producto).'
+          content:
+            application/json:
+              examples:
+                  example1:
+                    summary: 'CASO 1'
+                    value:
+                      statusCode: 500
+                      message: 'Error al obtener el producto por ID - DAO: result is not defined'
+                  example2:
+                    summary: 'CASO 2'
+                    value:
+                      statusCode: 500
+                      message: 'Error al actualizar el producto - Controller: resultService is not defined'
+
+components:
+  securitySchemes:
+  # AUTH - SCHEMA:
+    cookieAuth:      
+      type: apiKey
+      in: cookie
+      name: CoderCookie123

@@ -1,0 +1,34 @@
+<div class="SessionContainer">
+    <div class="logo">
+        <div id="head">
+            <h1>MECATRON</h1>
+        </div>
+        <div>
+            <a href="/tickets"><img src="https://i.ibb.co/58kXCRF/ti.png" alt="volver" border="0" class="logoS" style="position: absolute; border-radius: 0.7em !important; margin-top: 2.5em; margin-left: 65% !important;"></a>
+            <a href="api/sessions/profile"><img src="https://i.ibb.co/Kxb8GDb/login.png" alt="login" border="0" class="logoS"></a>
+            <a href="/chat"><img src="https://i.ibb.co/ftwkrSb/png-transparent-email-computer-icons-message-icon-design-bass-miscellaneous-angle-black-1-1.png"  alt="login" border="0" class="logoS"></a>
+            <a href="/products" style="margin-left: 2em"><img src="https://i.ibb.co/pKgL6pC/bench.png" alt="realtimeproducts" border="0" class="logoS"></a>
+        </div>
+    </div>
+    <h2>Carrito</h2>
+    <table id="tableCarts" class="table">
+        <thead>
+            <tr>
+                <th>Modelo</th>
+                <th>Img1</th>
+                <th>Stock</th>
+                <th>Unds. a comprar</th>
+                <th>Precio x Und.</th>
+                <th>Subtotal</th>
+                <th>Eliminar del carrito</th>
+            </tr>
+        </thead>
+        <tbody id="tableProdCartID"></tbody>
+    </table>
+    <div id="cierreCompra" style="margin-top: -3em; margin-bottom: -0.7em;"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/cart.js" type="module"></script>

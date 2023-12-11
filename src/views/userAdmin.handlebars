@@ -1,0 +1,42 @@
+<div id="contenedorVista" style=" display: none">
+    <div class="container">
+        <div class="logoSession">
+            <h1>MECATRON REPUESTOS</h1>   
+            <div style="display: flex;">
+                <a href="/editUserAdmin"><img src="https://i.ibb.co/Kxb8GDb/login.png" alt="login" border="0" class="logoS"></a>
+                <div id="storeButtonPrem"></div>
+                <a href="https://dashboard.stripe.com/test/dashboard">
+                    <img src="https://i.ibb.co/BzDFQyK/stipe-removebg-preview.png" alt="stripe" border="0" class="logoS">
+                </a>
+                <img id="logoutAdmin" src="https://i.ibb.co/FmxYWrr/Captura-de-pantalla-2023-10-23-184006.png" alt="logout" border="0"  class="logoS" style=" max-width: 4em; height: auto;">
+            </div>
+        </div>
+        <div
+            style="display: flex; flex-direction: row; justify-content: center; margin-top: 0.6em; margin-bottom: 1em;">
+            <div style="display: flex; flex-direction: row; justify-content: center; gap: 0.5em; padding: 0.3em;">
+                <button id="All" class="botonB">Todas las categorías</button>
+                <button id="soloUsers" class="botonB">Productos usuarios</button>
+                <button id="soloAdmin" class="botonB">Productos admin</button>
+                <button id="Motor" class="botonB">Motor</button>
+                <button id="Electricidad" class="botonB">Electricidad</button>
+                <button id="Limpieza" class="botonB">Limpieza</button>
+                <button id="Frenos" class="botonB">Frenos</button>
+                <button id="Carroceria" class="botonB">Carroceria</button>
+                <button id="Suspension" class="botonB">Suspension</button>
+                <button id="MenorPre" class="botonB">Menor precio</button>
+                <button id="MayorPre" class="botonB">Mayor precio</button>
+                <input type="number" id="limit" class="botonB"
+                    style="display: flex; justify-content: center; align-items: center; height: 3em;  margin: 0em 0em; width: 6.5em;"
+                    placeholder="Mostrar" />
+                <button id="Limpiar" class="botonB">Limpiar filtros</button>
+            </div>
+        </div>
+        <h1>Todos los productos publicados</h1>
+        <table id="tableProd" class="table">
+        </table>
+        <div id="Pags"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/adminPanel-A.js" type="module"></script>

@@ -1,0 +1,4 @@
+{"level":"error","message":"Error name: Missing parameters"}
+{"level":"error","message":"Error name: Product does not exist"}
+{"level":"fatal","message":"Test de Logger - Level: 'fatal'"}
+{"level":"error","message":"Test de Logger - Level: 'error'"}

@@ -1,0 +1,116 @@
+<div id="VistaDeCarga" style="display: block" ;>
+    <div class="loader-container">
+        <div class="divLogo">
+            <h1>MECATRON REPUESTOS</h1>        
+            <div style="display: flex;">
+                <a href="/perfil"><img src="https://i.ibb.co/Kxb8GDb/login.png" alt="login" border="0" class="logoS"></a>
+                <a href="/chat"><img src="https://i.ibb.co/ftwkrSb/png-transparent-email-computer-icons-message-icon-design-bass-miscellaneous-angle-black-1-1.png"  alt="login" border="0" class="logoS"></a>
+                <a href="/changeRole"><img src="https://i.ibb.co/f8TCwG1/VIP-modified.png" alt="VIP-modified" border="0"class="logoS"></a>
+                <a href="/cart"><img src="https://i.ibb.co/8DFrsw8/cart1.png" alt="cart" border="0" class="logoS"></a>   
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorVista" style=" display: none">
+    <div class="container">
+        <a id="volverStore" href="/products"><img src="https://i.ibb.co/mHPj0kW/Logo-volver-removebg-preview.png" alt="volver" border="0" class="logoS" style="position: absolute; margin-top: 2em;"></a>
+        <h1>Publicar productos</h1>
+        <div style="border: 1px solid rgb(206, 206, 206); padding-top: 0.7em; padding-bottom: 0.5em; padding-left: 0.5em; border-radius: 1em; margin-top: 2em;">
+            <table class="table" style="margin-top: 0px;">
+                <thead style="margin: 0em; padding: 0em;">
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Descripción</th>
+                        <th>Code</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Img 1</th>
+                        <th>Img 2</th>
+                        <th style="background: white; border-bottom: 2px solid white; padding: 0em 0.5em;">
+                            <button id="vaciarCamposBtn" class="boton" style="height: 4.2em; margin-left: 1em; margin-bottom: -0.1em; width: 7em;">VACIARCAMPOS</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <form>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="text" name="model" placeholder="Modelo">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="text" name="description" placeholder="Descripción">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="text" name="code" placeholder="Code">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="number" name="price" placeholder="Precio">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="number" name="stock" placeholder="Stock">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <input style="width: 100%; height: 4em;" type="text" name="category" placeholder="Categoría">
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                    <input type="file" id="img1" name="img1" style="display: none;">
+                                    <label for="img1" style="padding: 10px; width: %100; font-family: 'Montserrat'; background-color: #bfe4fd; color: #002877; cursor: pointer; border-radius: 1em; border: none;">
+                                        <span id="nombreArchivo1">Imagen 1</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="width: 11em; padding: 0em; padding-top: 0.9em; border-bottom: 0px solid #d9d9d9; margin-bottom: -1em;">
+                                <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                                    <input type="file" id="img2" name="img2" style="display: none;">
+                                    <label for="img2" style="padding: 10px; width: %100; font-family: 'Montserrat'; background-color: #bfe4fd; color: #002877; cursor: pointer; border-radius: 1em; border: none;">
+                                        <span id="nombreArchivo2">Imagen 2</span>
+                                    </label>
+                                </div>
+                            </td>
+                        </form>
+                        <td style="padding: 0em; border-bottom: 0px solid white;">
+                            <button id="publicarBtn" class="boton" style="height: 3.73em; margin-top: 0.9em; margin-left: 1em; margin-bottom: 0.1em; width: 7em;">PUBLICAR</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tusProductos">
+            <h1 style="margin-top: 1em;">Tu inventario de productos</h1>
+            <table id="yourProductsTable" class="table"></table>
+        </div>
+        <div id="Pags"></div>
+    </div>
+</div>
+<script>
+    const archivoInput1 = document.getElementById('img1');
+    const archivoInput2 = document.getElementById('img2');
+    const nombreArchivo1 = document.getElementById('nombreArchivo1');
+    const nombreArchivo2 = document.getElementById('nombreArchivo2');
+    archivoInput1.addEventListener('change', () => {
+        const archivos = archivoInput1.files;
+        nombreArchivo1.textContent = archivos[0].name;
+    })
+    archivoInput2.addEventListener('change', () => {
+        const archivos = archivoInput2.files;
+        nombreArchivo2.textContent = archivos[0].name;
+    })
+    function changeSpanEdit() {
+        const editarInput1 = document.getElementById('editImg1');
+        const editarInput2 = document.getElementById('editImg2');
+        const nombreArchivo3 = document.getElementById('nombreArchivo3');
+        const nombreArchivo4 = document.getElementById('nombreArchivo4');
+        editarInput1.addEventListener('change', () => {
+            const archivos = editarInput1.files;
+            nombreArchivo3.textContent = archivos[0].name;
+        })
+        editarInput2.addEventListener('change', () => {
+            const archivos = editarInput2.files;
+            nombreArchivo4.textContent = archivos[0].name;
+        })
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/store.js" type="module"></script>
